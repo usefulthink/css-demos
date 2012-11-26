@@ -1,0 +1,20 @@
+.container {
+    position: relative;
+    margin: 20px auto; width: 1280px;
+}
+
+#canvas {
+    width: 1280px; height: 544px;
+
+    -webkit-filter: custom(
+        url(../shader/page-curl.vs) mix(url(../shader/page-curl.fs) normal source-atop),
+        50 50 border-box,
+        transform
+            perspective(1000)
+            scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg),
+        curlPosition 0.37 -0.38,
+        curlDirection 139,
+        curlRadius 0.29,
+        bleedThrough 0.5
+    );
+}
