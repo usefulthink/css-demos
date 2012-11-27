@@ -31,7 +31,7 @@ void main()
 {
     if (gl_FrontFacing) {
         // Front shadows.
-        css_MixColor = vec4(vec3(0.0), 1.0 - v_normal.z);
+        css_MixColor = vec4(vec3(0.0), 1.0 - v_normal.z*0.75);
     } else {
         // Back shine.
         float gradient = clamp(v_gradient, 0.0, 1.0);

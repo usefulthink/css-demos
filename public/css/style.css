@@ -1,20 +1,52 @@
+
+
 .container {
     position: relative;
-    margin: 20px auto; width: 1280px;
+    margin: 20px auto; width: 300px;
+    overflow: visible;
+    zoom: 3;
 }
 
-#canvas {
-    width: 1280px; height: 544px;
+body { height: 100%; background: black; }
+h1 { color: #ccc; font-family: 'RBNo2 Light'; font-size: 60px; text-align: center; }
 
+#canvas {
+    -webkit-transition: -webkit-filter 3s ease-in-out;
+
+    -webkit-filter: custom(
+        /* vertex and fragment-shader definitions */
+        url(../shader/page-curl.vs)
+            mix(url(../shader/page-curl.fs) normal source-atop),
+
+        /* tesselation (create 50x50 rows/columns,
+           results in 2601 vertices forming 5000 Triangles) */
+        50 50 border-box,
+
+        /* vs-uniforms */
+        transform           /* uniform mat4 transform */
+            perspective(1000)
+            scale(1)
+            rotateX(0deg) rotateY(0deg) rotateZ(0deg),
+        curlPosition 0 0.2, /* uniform vec2 curlPosition */
+        curlDirection 300,  /* uniform float curlDirection */
+        curlRadius 1,       /* uniform float curlRadius */
+
+        /* fs-uniforms */
+        bleedThrough 0      /* uniform float bleedThrough */
+    );
+}
+
+#canvas:hover {
     -webkit-filter: custom(
         url(../shader/page-curl.vs) mix(url(../shader/page-curl.fs) normal source-atop),
         50 50 border-box,
         transform
             perspective(1000)
-            scale(1) rotateX(0deg) rotateY(0deg) rotateZ(0deg),
-        curlPosition 0.37 -0.38,
-        curlDirection 139,
-        curlRadius 0.29,
-        bleedThrough 0.5
+            scale(0.5) rotateX(30deg) rotateY(45deg) rotateZ(0deg),
+
+        curlPosition 0.27 -0.38,
+        curlDirection 129,
+        curlRadius 0.19,
+        bleedThrough 0.6
     );
 }

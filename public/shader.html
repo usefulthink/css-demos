@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <h1>css-shaders and animated content</h1>
+
+    <div class="container">
+        <!-- for some reason, video-tags won't work with css-shaders – might be because video decoding and
+             rendering is done by the graphics-card. So we need to render the video using a canvas-element -->
+        <canvas id="canvas"></canvas>
+        <video id="video" src="assets/demo.mp4" style="display:none;"></video>
+    </div>
+
+    <script>
+        document.body.onload = function() {
+            var video = document.getElementById('video'),
+                canvas = document.getElementById('canvas'),
+                ctx = canvas.getContext('2d');
+
+            // setting the size of the canvas-element doesn't work either,
+            // we have to go with the default value of 300x150px
+
+            video.play();
+            (function mainloop() {
+                webkitRequestAnimationFrame(mainloop);
+
+                ctx.drawImage(video, 0,0,300,150);
+            } ());
+        };
+    </script>
+</body>
+</html>
