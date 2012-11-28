@@ -1,0 +1,16 @@
+{
+  "name": "css-demos",
+  "version": "0.0.1",
+  "description": "some css-demos",
+  "main": "app.js",
+  "dependencies": {
+    "express": ">=3.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/usefulthink/css-demos.git"
+  },
+  "author": "Martin Schuhfuss <m.schuhfuss@gmail.com>",
+  "license": "MIT"
+}
