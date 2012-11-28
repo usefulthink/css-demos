@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/blendmodes.css" />
+
+    <script src="js/modernizr.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Blending images</h1>
+        <div class="row">
+            <div class="span3 sample">
+                <h2>foreground</h2>
+
+                <div class="img-container">
+                    <div class="img android"></div>
+                    <!--div class="img texture"></div-->
+                </div>
+            </div>
+
+            <div class="span3 sample">
+                <h2>background</h2>
+
+                <div class="img-container">
+                    <!--div class="img android"></div-->
+                    <div class="img texture"></div>
+                </div>
+            </div>
+
+            <div class="span6 sample">
+                <h2>code</h2>
+                <pre class="code">
+&lt;div class="span3 sample template" style="display:none;"&gt;
+    &lt;h2&gt;multiply&lt;/h2&gt;
+
+    &lt;div class="img-container"&gt;
+        &lt;div class="img texture"&gt;&lt;/div&gt;
+        &lt;div class="img android blended"
+                    style="-webkit-blend-mode: multiply;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </pre>
+            </div>
+        </div>
+        <div class="row image-blending-samples">
+            <div class="span3 sample template" style="display:none;">
+                <h2>multiply</h2>
+
+                <div class="img-container">
+                    <div class="img background texture"></div>
+                    <div class="img foreground android blended"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.8.1.min.js"></script></body>
+
+    <script>
+        $(function() {
+            var $sampleTpl = $('.image-blending-samples .template');
+
+            $sampleTpl.remove()
+                .removeClass('template')
+                .show();
+
+            var blendModes = [
+                'normal', 'plus', 'multiply', 'screen', 'overlay', 'darken', 'lighten',
+                'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference',
+                'exclusion', 'hue', 'saturation', 'color', 'luminosity'
+            ];
+
+            blendModes.forEach(function(mode) {
+                var $sample = $sampleTpl.clone();
+
+                $sample.find('h2').text(mode);
+                $sample.find('.blended').css('WebkitBlendMode', mode);
+
+                $sample.appendTo('.image-blending-samples');
+            });
+        });
+    </script>
+</html>
